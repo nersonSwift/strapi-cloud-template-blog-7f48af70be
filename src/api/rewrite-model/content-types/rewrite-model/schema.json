@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rewrite_models",
+  "info": {
+    "singularName": "rewrite-model",
+    "pluralName": "rewrite-models",
+    "displayName": "RewriteModel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "service": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "OpenAI",
+        "Azure"
+      ]
+    }
+  }
+}
