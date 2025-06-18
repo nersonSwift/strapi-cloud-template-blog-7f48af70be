@@ -24,8 +24,8 @@
       "type": "enumeration",
       "required": true,
       "enum": [
-        "OpenAI",
-        "Azure"
+        "Azure",
+        "OpenAI"
       ]
     }
   }

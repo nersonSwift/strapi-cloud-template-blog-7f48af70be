@@ -7,9 +7,7 @@ export interface RewriteTemplateProperties extends Struct.ComponentSchema {
   };
   attributes: {
     default: Schema.Attribute.JSON;
-    key: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+    key: Schema.Attribute.String & Schema.Attribute.Required;
     type: Schema.Attribute.Enumeration<['select', 'multi-select', 'text']> &
       Schema.Attribute.Required;
   };

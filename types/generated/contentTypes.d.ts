@@ -513,7 +513,7 @@ export interface ApiRewriteModelRewriteModel
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
-    service: Schema.Attribute.Enumeration<['OpenAI', 'Azure']> &
+    service: Schema.Attribute.Enumeration<['Azure', 'OpenAI']> &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
