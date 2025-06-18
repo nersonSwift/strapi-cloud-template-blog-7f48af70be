@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "rewrite_category_orders",
+  "info": {
+    "singularName": "rewrite-category-order",
+    "pluralName": "rewrite-category-orders",
+    "displayName": "RewriteCategoryOrder"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rewrite-category.rewrite-category"
+    }
+  }
+}

@@ -15,20 +15,30 @@
     }
   },
   "attributes": {
-    "emoji": {
-      "type": "string",
+    "uid": {
+      "type": "uid",
       "pluginOptions": {
         "i18n": {
-          "localized": false
+          "localized": true
         }
       },
-      "required": true
+      "required": true,
+      "default": "rc"
     },
     "title": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "required": true
+    },
+    "emoji": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
         }
       },
       "required": true
@@ -67,8 +77,9 @@
     },
     "templates": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::rewrite-template.rewrite-template"
+      "relation": "manyToMany",
+      "target": "api::rewrite-template.rewrite-template",
+      "mappedBy": "categories"
     }
   }
 }

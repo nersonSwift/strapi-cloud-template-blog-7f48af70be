@@ -11,6 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
     "key": {
       "type": "string",
       "required": true

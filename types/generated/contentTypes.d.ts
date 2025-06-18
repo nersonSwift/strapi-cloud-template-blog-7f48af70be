@@ -373,6 +373,42 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRewriteCategoryOrderRewriteCategoryOrder
+  extends Struct.SingleTypeSchema {
+  collectionName: 'rewrite_category_orders';
+  info: {
+    displayName: 'RewriteCategoryOrder';
+    pluralName: 'rewrite-category-orders';
+    singularName: 'rewrite-category-order';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::rewrite-category.rewrite-category'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::rewrite-category-order.rewrite-category-order'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRewriteCategoryRewriteCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'rewrite_categories';
@@ -427,7 +463,7 @@ export interface ApiRewriteCategoryRewriteCategory
     >;
     publishedAt: Schema.Attribute.DateTime;
     templates: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::rewrite-template.rewrite-template'
     >;
     title: Schema.Attribute.String &
@@ -437,6 +473,14 @@ export interface ApiRewriteCategoryRewriteCategory
           localized: true;
         };
       }>;
+    uid: Schema.Attribute.UID &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'rc'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -465,6 +509,9 @@ export interface ApiRewriteModelRewriteModel
       'api::rewrite-model.rewrite-model'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     service: Schema.Attribute.Enumeration<['OpenAI', 'Azure']> &
       Schema.Attribute.Required;
@@ -491,6 +538,10 @@ export interface ApiRewriteTemplateRewriteTemplate
     };
   };
   attributes: {
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::rewrite-category.rewrite-category'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -529,7 +580,7 @@ export interface ApiRewriteTemplateRewriteTemplate
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     prompt_is_hidden: Schema.Attribute.Boolean &
@@ -557,6 +608,14 @@ export interface ApiRewriteTemplateRewriteTemplate
           localized: true;
         };
       }>;
+    uid: Schema.Attribute.UID &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'rt'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1072,6 +1131,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::rewrite-category-order.rewrite-category-order': ApiRewriteCategoryOrderRewriteCategoryOrder;
       'api::rewrite-category.rewrite-category': ApiRewriteCategoryRewriteCategory;
       'api::rewrite-model.rewrite-model': ApiRewriteModelRewriteModel;
       'api::rewrite-template.rewrite-template': ApiRewriteTemplateRewriteTemplate;
