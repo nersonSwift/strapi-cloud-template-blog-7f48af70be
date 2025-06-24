@@ -16,6 +16,9 @@
       "required": true,
       "unique": true
     },
+    "key": {
+      "type": "string"
+    },
     "service": {
       "type": "enumeration",
       "required": true,
