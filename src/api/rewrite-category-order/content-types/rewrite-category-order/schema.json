@@ -19,6 +19,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::rewrite-category.rewrite-category"
+    },
+    "banner_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rewrite-category.rewrite-category"
     }
   }
 }

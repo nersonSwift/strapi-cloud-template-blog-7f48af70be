@@ -96,6 +96,16 @@
       "component": "rewrite-template.properties",
       "repeatable": true
     },
+    "parameters": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "rewrite-template.properties",
+      "repeatable": true
+    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",

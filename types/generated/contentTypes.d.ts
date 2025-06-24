@@ -390,6 +390,10 @@ export interface ApiRewriteCategoryOrderRewriteCategoryOrder
     };
   };
   attributes: {
+    banner_categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::rewrite-category.rewrite-category'
+    >;
     categories: Schema.Attribute.Relation<
       'oneToMany',
       'api::rewrite-category.rewrite-category'
@@ -502,7 +506,6 @@ export interface ApiRewriteModelRewriteModel
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    key: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -576,6 +579,15 @@ export interface ApiRewriteTemplateRewriteTemplate
       'oneToOne',
       'api::rewrite-model.rewrite-model'
     >;
+    parameters: Schema.Attribute.Component<
+      'rewrite-template.properties',
+      true
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     prompt: Schema.Attribute.Text &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
